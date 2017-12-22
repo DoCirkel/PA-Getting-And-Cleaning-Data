@@ -34,7 +34,7 @@ activity_labels <- activity_labels %>%
 
 
 # Combine data sets
-Data <- select(X_Data, contains("mean()"), contains("std()")) %>%         # Select the columns from X_Data that contain mean or std in the name
+Data <- select(X_Data, contains("mean()"), contains("std()")) %>%     # Select the columns from X_Data that contain mean or std in the name
   cbind(y_Data, subject_Data) %>%                                     # Merge outcome with y and subject data
   merge(activity_labels, by.x = "Number_outcome", by.y = "number")%>% # Assign activity labels to the outcome By numberoutcome and by number
   select(-c(Number_outcome))                                          # Delete unnessecary column
@@ -47,5 +47,5 @@ Data2 <- Data %>%
   summarize_all(funs(mean))                                           # get average of every variable
 
 
-write.table(Data, file = "Data")
-write.table(Data2, file = "Data2")
+write.table(Data, file = "Data", row.name=FALSE)
+write.table(Data2, file = "Data2", row.name=FALSE)
